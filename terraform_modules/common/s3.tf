@@ -16,13 +16,13 @@ data "aws_iam_policy_document" "bucket_policy_mailbox" {
 
     condition {
       test     = "StringEquals"
-      values   = data.aws_caller_identity.current.account_id
+      values   = [data.aws_caller_identity.current.account_id]
       variable = "AWS:SourceAccount"
     }
 
     condition {
       test     = "StringEquals"
-      values   = aws_ses_receipt_rule.mailbox.arn
+      values   = [aws_ses_receipt_rule.mailbox.arn]
       variable = "AWS:SourceArn"
     }
   }
