@@ -29,6 +29,6 @@ data "aws_iam_policy_document" "bucket_policy_mailbox" {
 }
 
 resource "aws_s3_bucket_policy" "mailbox" {
-  bucket = ""
-  policy = ""
+  bucket = aws_s3_bucket.mailbox.bucket
+  policy = data.aws_iam_policy_document.bucket_policy_mailbox.json
 }
