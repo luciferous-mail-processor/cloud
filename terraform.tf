@@ -33,7 +33,7 @@ locals {
 }
 
 module "common" {
-  source = "terraform_modules/common"
+  source = "./terraform_modules/common"
 
   receive_domain = var.RECEIVE_DOMAIN
 }
