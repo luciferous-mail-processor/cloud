@@ -1,9 +1,16 @@
+locals {
+  ses = {
+    receipt_rule_name = "mailbox"
+  }
+}
+
 resource "aws_ses_receipt_rule_set" "mailbox" {
   rule_set_name = "mailbox"
 }
 
 resource "aws_ses_receipt_rule" "mailbox" {
-  name          = "mailbox"
+  depends_on    = [aws_s3_bucket_policy.mailbox]
+  name          = local.ses.receipt_rule_name
   rule_set_name = aws_ses_receipt_rule_set.mailbox.rule_set_name
   recipients    = [var.receive_domain]
   enabled       = true

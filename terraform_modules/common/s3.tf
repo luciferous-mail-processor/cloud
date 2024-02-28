@@ -22,7 +22,7 @@ data "aws_iam_policy_document" "bucket_policy_mailbox" {
 
     condition {
       test     = "StringEquals"
-      values   = [aws_ses_receipt_rule.mailbox.arn]
+      values   = ["${aws_ses_receipt_rule_set.mailbox.arn}:receipt-rule/${local.ses.receipt_rule_name}"]
       variable = "AWS:SourceArn"
     }
   }
